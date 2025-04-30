@@ -1,0 +1,146 @@
+    .accommodation-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .action-buttons .btn {
+        font-size: 0.9rem;
+        text-decoration: none;
+    }
+    
+    .main-image {
+        border-radius: 15px;
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+    
+    .sub-image {
+        border-radius: 15px;
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+    }
+    
+    .show-photos-btn {
+        font-size: 0.9rem;
+        border-radius: 20px;
+        padding: 0.5rem 1rem;
+    }
+    
+    .type-location {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .details {
+        font-size: 0.9rem;
+        color: #666;
+    }
+    
+    .price-btn {
+        border-radius: 20px;
+        font-size: 0.9rem;
+        color: #333;
+        background-color: #fff;
+        border: 1px solid #e0e0e0;
+    }
+    
+    .price-btn i {
+        color: #ff385c;
+    }
+    
+    /* تنسيقات قسم المعلومات */
+    .guest-favorite {
+        font-size: 0.9rem;
+        color: #333;
+    }
+    
+    .rating-reviews .rating {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    
+    .host-info {
+        font-size: 0.9rem;
+    }
+    
+    .host-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 1rem;
+    }
+    
+    .feature-icon {
+        font-size: 1.2rem;
+        color: #333;
+    }
+    
+    .feature-name {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .feature-description {
+        font-size: 0.85rem;
+    }
+    
+    /* تنسيقات صندوق الحجز */
+    .booking-box {
+        border: 1px solid #e0e0e0;
+        border-radius: 15px;
+        background-color: #fff;
+        position: sticky;
+        top: 20px;
+    }
+    
+    .price {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .date-box .check-in,
+    .date-box .check-out {
+        width: 48%;
+    }
+    
+    .form-label {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .form-control,
+    .form-select {
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
+    
+    .btn-reserve {
+        background-color: #ff385c;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 10px;
+        border: none;
+    }
+    
+    .btn-reserve:hover {
+        background-color: #e03150;
+    }
+    
+    .report-link {
+        font-size: 0.9rem;
+        color: #666;
+        text-decoration: underline;
+    }
+    
+    .report-link:hover {
+        color: #333;
+    }

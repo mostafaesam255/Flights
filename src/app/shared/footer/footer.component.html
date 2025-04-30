@@ -1,0 +1,108 @@
+<div class="footer-container">
+        <h2 class="footer-title">Inspiration for future getaways</h2>
+        
+        <div class="tabs d-flex mb-4">
+        <button *ngFor="let tab of tabs" 
+                class="tab-btn" 
+                [class.active]="activeTab === tab" 
+                (click)="setActiveTab(tab)">
+            {{tab}}
+        </button>
+        </div>
+        <div class="unique-stays" *ngIf="activeTab === 'Unique stays'">
+        <div class="row">
+            <div class="col-6 col-md-3 col-lg-2 mb-3" *ngFor="let stay of uniqueStays">
+            <div class="stay-item">
+                <div class="stay-name">{{stay.name}}</div>
+                <div class="stay-location">{{stay.location}}</div>
+            </div>
+            </div>
+        </div>
+        <button class="show-more-btn" (click)="showMore()">
+            Show more <i class="fas fa-chevron-down ms-1"></i>
+        </button>
+        </div>
+        <div class="categories" *ngIf="activeTab === 'Categories'">
+        <div class="row">
+            <div class="col-6 col-md-3 col-lg-2 mb-3" *ngFor="let category of categories">
+            <div class="stay-item">
+                <div class="stay-name">{{category}}</div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="travel-tips" *ngIf="activeTab === 'Travel tips & inspiration'">
+        <div class="row">
+            <div class="col-6 col-md-3 col-lg-2 mb-3" *ngFor="let tip of travelTips">
+            <div class="stay-item">
+                <div class="stay-name">{{tip.name}}</div>
+                <div class="stay-location">{{tip.description}}</div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="apartments" *ngIf="activeTab === 'Airbnb-friendly apartments'">
+        <div class="row">
+            <div class="col-6 col-md-3 col-lg-2 mb-3" *ngFor="let apartment of apartments">
+            <div class="stay-item">
+                <div class="stay-name">{{apartment.name}}</div>
+                <div class="stay-location">{{apartment.location}}</div>
+            </div>
+            </div>
+        </div>
+        <button class="show-more-btn" (click)="showMore()">
+            Show more <i class="fas fa-chevron-down ms-1"></i>
+        </button>
+        </div>
+        <div class="footer-links row mt-5">
+        <div class="col-md-4 mb-4">
+            <h5 class="footer-section-title">Support</h5>
+            <ul class="list-unstyled">
+            <li *ngFor="let link of supportLinks">
+                <a href="#" class="footer-link">{{link}}</a>
+            </li>
+            </ul>
+        </div>
+        <div class="col-md-4 mb-4">
+            <h5 class="footer-section-title">Hosting</h5>
+            <ul class="list-unstyled">
+            <li *ngFor="let link of hostingLinks">
+                <a href="#" class="footer-link">{{link}}</a>
+            </li>
+            </ul>
+        </div>
+        <div class="col-md-4 mb-4">
+            <h5 class="footer-section-title">Airbnb</h5>
+            <ul class="list-unstyled">
+            <li *ngFor="let link of airbnbLinks">
+                <a href="#" class="footer-link">{{link}}</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+        <div class="footer-bottom mt-4 pt-4 border-top">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="footer-copyright mb-3 mb-md-0">
+            <span>&copy; 2025 Airbnb, Inc.</span>
+            <span class="mx-2">·</span>
+            <span *ngFor="let link of bottomLinks; let last = last">
+                <a href="#" class="footer-bottom-link">{{link}}</a>
+                <span *ngIf="!last" class="mx-2">·</span>
+            </span>
+            </div>
+            <div class="footer-actions d-flex align-items-center">
+            <div class="language-currency me-3">
+                <i class="fas fa-globe me-1"></i>
+                <span>English (US)</span>
+                <span class="mx-2">·</span>
+                <span>EGP</span>
+            </div>
+            <div class="social-icons">
+                <a *ngFor="let icon of socialIcons" href="#" class="social-icon me-2">
+                <i class="{{icon.icon}}"></i>
+                </a>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>

@@ -1,0 +1,5 @@
+/* src/app/app.component.scss */
+main {
+    min-height: calc(100vh - 120px); /* عشان الفوتر ما يغطي المحتوى */
+    padding: 1rem;
+  }

@@ -1,0 +1,175 @@
+<!-- src/app/shared/navbar/navbar.component.html -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <div class="container-fluid">
+    <!-- الشعار -->
+    <a class="navbar-brand" href="#">
+      <span class="logo">Airbnb</span>
+    </a>
+
+    <!-- زر الـ Toggle للشاشات الصغيرة -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- الروابط والأزرار -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- روابط التنقل -->
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/home" routerLinkActive="active">Homes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/experiences" routerLinkActive="active">Experiences</a>
+        </li>
+      </ul>
+
+      <!-- الأزرار على اليمين -->
+      <div class="d-flex align-items-center">
+        <a class="nav-link me-2" href="#">Airbnb your home</a>
+        <a class="nav-link me-2" href="#"><i class="fas fa-globe"></i></a>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary user-btn d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-bars me-1"></i>
+            <i class="fas fa-user"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="#">Sign up</a></li>
+            <li><a class="dropdown-item" href="#">Log in</a></li>
+            <li><a class="dropdown-item" href="#">Gift cards</a></li>
+            <li><a class="dropdown-item" href="#">Airbnb your home</a></li>
+            <li><a class="dropdown-item" href="#">Host an experience</a></li>
+            <li><a class="dropdown-item" href="#">Help Center</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- فورم البحث -->
+<div class="search-bar container mt-3">
+  <div class="card p-2 d-flex flex-row align-items-center">
+    <!-- حقل Where مع القايمة -->
+    <div class="search-field position-relative">
+      <label>Where</label>
+      <input type="text" class="form-control" placeholder="Search destinations" 
+             [(ngModel)]="searchData.where" 
+             (focus)="onFocus()" 
+             (blur)="onBlur()">
+      <ul class="suggestions-list" *ngIf="showSuggestions">
+        <li *ngFor="let destination of suggestedDestinations" 
+            (click)="selectDestination(destination.name)">
+          <div class="d-flex align-items-center">
+            <i class="{{destination.icon}} me-2"></i>
+            <div>
+              <div class="destination-name">{{destination.name}}</div>
+              <div class="destination-description">{{destination.description}}</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- حقل Check in -->
+    <div class="search-field position-relative">
+      <label>Check in</label>
+      <input type="text" class="form-control" placeholder="Add dates" 
+             [(ngModel)]="searchData.checkIn" 
+             (click)="toggleDatePicker()" readonly>
+    </div>
+
+    <!-- حقل Check out -->
+    <div class="search-field position-relative">
+      <label>Check out</label>
+      <input type="text" class="form-control" placeholder="Add dates" 
+             [(ngModel)]="searchData.checkOut" 
+             (click)="toggleDatePicker()" readonly>
+    </div>
+
+    <!-- الـ Date Picker -->
+    <div class="date-picker-container" *ngIf="showDatePicker">
+      <div class="date-tabs">
+        <button class="tab-btn" [class.active]="activeTab === 'dates'" (click)="activeTab = 'dates'">Dates</button>
+        <button class="tab-btn" [class.active]="activeTab === 'months'" (click)="activeTab = 'months'">Months</button>
+        <button class="tab-btn" [class.active]="activeTab === 'flexible'" (click)="activeTab = 'flexible'">Flexible</button>
+      </div>
+      <div *ngIf="activeTab === 'dates'">
+        <mat-date-range-input [rangePicker]="picker" (dateChange)="onDateRangeChange()">
+          <input matStartDate placeholder="Start date" [(ngModel)]="dateRange.start">
+          <input matEndDate placeholder="End date" [(ngModel)]="dateRange.end">
+        </mat-date-range-input>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+        <div class="date-options">
+          <button class="btn btn-outline-secondary" (click)="toggleDatePicker()">Exact</button>
+          <button class="btn btn-outline-secondary" (click)="addDays(1)">+1 day</button>
+          <button class="btn btn-outline-secondary" (click)="addDays(2)">+2 days</button>
+          <button class="btn btn-outline-secondary" (click)="addDays(3)">+3 days</button>
+          <button class="btn btn-outline-secondary" (click)="addDays(7)">+7 days</button>
+          <button class="btn btn-outline-secondary" (click)="addDays(14)">+14 days</button>
+        </div>
+      </div>
+      <div *ngIf="activeTab === 'months'">
+        <p>Select a month (To be implemented)</p>
+      </div>
+      <div *ngIf="activeTab === 'flexible'">
+        <p>Flexible dates (To be implemented)</p>
+      </div>
+    </div>
+
+    <!-- حقل Who -->
+    <div class="search-field position-relative">
+      <label>Who</label>
+      <input type="text" class="form-control" placeholder="Add guests" 
+             [(ngModel)]="searchData.guests" 
+             (click)="toggleGuestsPicker()" readonly>
+      <div class="guests-picker" *ngIf="showGuestsPicker">
+        <div class="guest-item">
+          <div>
+            <div class="guest-title">Adults</div>
+            <div class="guest-description">Ages 13 or above</div>
+          </div>
+          <div class="guest-counter">
+            <button class="btn btn-outline-secondary" (click)="decrement('adults')" [disabled]="guests.adults === 0">-</button>
+            <span>{{ guests.adults }}</span>
+            <button class="btn btn-outline-secondary" (click)="increment('adults')">+</button>
+          </div>
+        </div>
+        <div class="guest-item">
+          <div>
+            <div class="guest-title">Children</div>
+            <div class="guest-description">Ages 2–12</div>
+          </div>
+          <div class="guest-counter">
+            <button class="btn btn-outline-secondary" (click)="decrement('children')" [disabled]="guests.children === 0">-</button>
+            <span>{{ guests.children }}</span>
+            <button class="btn btn-outline-secondary" (click)="increment('children')">+</button>
+          </div>
+        </div>
+        <div class="guest-item">
+          <div>
+            <div class="guest-title">Infants</div>
+            <div class="guest-description">Under 2</div>
+          </div>
+          <div class="guest-counter">
+            <button class="btn btn-outline-secondary" (click)="decrement('infants')" [disabled]="guests.infants === 0">-</button>
+            <span>{{ guests.infants }}</span>
+            <button class="btn btn-outline-secondary" (click)="increment('infants')">+</button>
+          </div>
+        </div>
+        <div class="guest-item">
+          <div>
+            <div class="guest-title">Pets</div>
+            <div class="guest-description">Bringing a service animal?</div>
+          </div>
+          <div class="guest-counter">
+            <button class="btn btn-outline-secondary" (click)="decrement('pets')" [disabled]="guests.pets === 0">-</button>
+            <span>{{ guests.pets }}</span>
+            <button class="btn btn-outline-secondary" (click)="increment('pets')">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-search" (click)="onSearch()"><i class="fas fa-search"></i></button>
+  </div>
+</div>
